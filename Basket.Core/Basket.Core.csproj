@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Factories\DiscountFactory.cs" />
     <Compile Include="Infrastructure\DiscountType.cs" />
+    <Compile Include="Infrastructure\Logger.cs" />
     <Compile Include="Interfaces\IBasket.cs" />
     <Compile Include="Infrastructure\InitDatabase.cs" />
     <Compile Include="Infrastructure\ProductEnum.cs" />

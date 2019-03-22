@@ -16,8 +16,24 @@ namespace Basket.Core
         private List<ProductDTO> shoppingCart;
 
         public bool HasDiscount { get; set; }
-        public decimal TotalPrice => shoppingCart.Sum(x => x.TotalPrice);
-        public decimal TotalPriceWithDiscount => shoppingCart.Sum(x => x.TotalPrice - x.Discount);
+        public decimal TotalPrice
+        {
+            get
+            {
+                var price = shoppingCart.Sum(x => x.TotalPrice);
+                Logger.Log($"LOG: Total price without discount requested: {price}");
+                return price;
+            }
+        }
+        public decimal TotalPriceWithDiscount
+        {
+            get
+            {
+                var price = shoppingCart.Sum(x => x.TotalPrice - x.Discount);
+                Logger.Log($"LOG: Total price with discount requested: {price}");
+                return price;
+            }
+        }
 
         public Basket()
         {

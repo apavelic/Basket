@@ -51,6 +51,7 @@ namespace Basket.Console
                 basket.ApplyDiscount();
             }
 
+
             var products = basket.GetCartContent().ToList();
 
             System.Console.WriteLine("Product\t\tQuantity\tPrice\t\tDiscount");
@@ -59,8 +60,9 @@ namespace Basket.Console
             {
                 System.Console.WriteLine(item.ToString());
             }
+            System.Console.WriteLine("###############################################################");
 
-            System.Console.WriteLine($"\nTotal price: ${basket.TotalPrice}");
+            System.Console.WriteLine($"Total price: ${basket.TotalPrice}");
             System.Console.WriteLine($"Total price with discount: ${basket.TotalPriceWithDiscount}");
         }
 
