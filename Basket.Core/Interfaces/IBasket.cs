@@ -1,4 +1,5 @@
-﻿using Basket.Core.Models;
+﻿using Basket.Core.Events;
+using Basket.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,9 @@ namespace Basket.Core.Interfaces
         bool HasDiscount { get; set; }
         decimal TotalPriceWithDiscount { get; }
         decimal TotalPrice { get; }
+
+        event TotalPriceDelegate OnTotalPriceRequested;
+        event TotalPriceDelegate OnTotalPriceWithDiscountRequested;
+
     }
 }

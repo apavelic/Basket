@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\PriceEventArgs.cs" />
+    <Compile Include="Events\TotalPriceDelegate.cs" />
     <Compile Include="Factories\DiscountFactory.cs" />
     <Compile Include="Infrastructure\DiscountType.cs" />
     <Compile Include="Infrastructure\Logger.cs" />

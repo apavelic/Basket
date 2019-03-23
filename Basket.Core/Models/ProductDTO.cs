@@ -19,7 +19,7 @@ namespace Basket.Core.Models
 
         public override string ToString()
         {
-            return $"{Name}\t\t{Quantity}\t\t${Price}\t\t${Discount}";
+            return $"{Name}\t\t{Quantity}\t\t${Price}\t\t${TotalPrice}\t\t${Discount}\t\t{TotalPrice - Discount}";
         }
     }
 }

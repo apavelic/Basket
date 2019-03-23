@@ -21,6 +21,9 @@ namespace Basket.Console
                 HasDiscount = true
             };
 
+            basket.OnTotalPriceRequested += Basket_OnTotalPriceRequested;
+            basket.OnTotalPriceWithDiscountRequested += Basket_OnTotalPriceWithDiscountRequested; ;
+
             InitializeProducts(basket);
 
             if (basket.HasDiscount)
@@ -31,15 +34,31 @@ namespace Basket.Console
             ShowBasketDetails(basket);
         }
 
+        private static void Basket_OnTotalPriceWithDiscountRequested(object sender, Core.Events.PriceEventArgs args)
+        {
+            Logger.Log($"LOG [{args.Date}]: Totalll price with discount requested: {args.Price}");
+        }
+
+        private static void Basket_OnTotalPriceRequested(object sender, Core.Events.PriceEventArgs args)
+        {
+            Logger.Log($"LOG [{args.Date}]: Totalll price without discount requested: {args.Price}");
+        }
+
         private static void RunApplication()
         {
-            System.Console.WriteLine("Application started");
-
-            var db = new InitDatabase();
-            System.Console.WriteLine("Database initialization...");
-            db.Init();
-
+            System.Console.Write("Type 'y' if you want to use databse: ");
+            string answer = System.Console.ReadLine();
             System.Console.Clear();
+            if (answer == "y")
+            {
+                System.Console.WriteLine("Application started");
+
+                var db = new InitDatabase();
+                System.Console.WriteLine("Database initialization...");
+                db.Init();
+
+                System.Console.Clear();
+            }
         }
 
         private static void InitializeProducts(IBasket basket)
@@ -71,14 +90,14 @@ namespace Basket.Console
 
         private static void ShowBasketDetails(IBasket basket)
         {
-            System.Console.WriteLine("Product\t\tQuantity\tPrice\t\tDiscount");
+            System.Console.WriteLine("Product\t\tQuantity\tPrice\t\tTotal\t\tDiscount\tTotal with Discount");
 
             var products = basket.GetCartContent().ToList();
             foreach (var item in products)
             {
                 System.Console.WriteLine(item.ToString());
             }
-            System.Console.WriteLine("###############################################################");
+            System.Console.WriteLine("####################################################################################################");
 
             System.Console.WriteLine($"Total price: ${basket.TotalPrice}");
             System.Console.WriteLine($"Total price with discount: ${basket.TotalPriceWithDiscount}");

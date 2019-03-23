@@ -1,4 +1,5 @@
-﻿using Basket.Core.Factories;
+﻿using Basket.Core.Events;
+using Basket.Core.Factories;
 using Basket.Core.Infrastructure;
 using Basket.Core.Interfaces;
 using Basket.Core.Models;
@@ -15,13 +16,23 @@ namespace Basket.Core
     {
         private List<ProductDTO> shoppingCart;
 
+        public event TotalPriceDelegate OnTotalPriceRequested;
+        public event TotalPriceDelegate OnTotalPriceWithDiscountRequested;
+
         public bool HasDiscount { get; set; }
         public decimal TotalPrice
         {
             get
             {
                 var price = shoppingCart.Sum(x => x.TotalPrice);
-                Logger.Log($"LOG: Total price without discount requested: {price}");
+
+                if (OnTotalPriceRequested != null)
+                {
+                    OnTotalPriceRequested(this,
+                        new PriceEventArgs() { Price = price, Date = DateTime.Now }
+                    );
+                }
+
                 return price;
             }
         }
@@ -30,7 +41,14 @@ namespace Basket.Core
             get
             {
                 var price = shoppingCart.Sum(x => x.TotalPrice - x.Discount);
-                Logger.Log($"LOG: Total price with discount requested: {price}");
+
+                if (OnTotalPriceWithDiscountRequested != null)
+                {
+                    OnTotalPriceWithDiscountRequested(this,
+                        new PriceEventArgs() { Price = price, Date = DateTime.Now }
+                    );
+                }
+
                 return price;
             }
         }
