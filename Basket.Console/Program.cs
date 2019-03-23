@@ -16,12 +16,34 @@ namespace Basket.Console
         {
             RunApplication();
 
-            IProductService productService = new ProductService();
             IBasket basket = new Core.Basket
             {
                 HasDiscount = true
             };
 
+            InitializeProducts(basket);
+
+            if (basket.HasDiscount)
+            {
+                basket.ApplyDiscount();
+            }
+
+            ShowBasketDetails(basket);
+        }
+
+        private static void RunApplication()
+        {
+            System.Console.WriteLine("Application started");
+
+            var db = new InitDatabase();
+            System.Console.WriteLine("Database initialization...");
+            db.Init();
+
+            System.Console.Clear();
+        }
+
+        private static void InitializeProducts(IBasket basket)
+        {
             basket.Add(new ProductDTO()
             {
                 ProductId = Guid.Parse("25546792-9A4C-E911-93A5-144F8A014C66"),
@@ -45,17 +67,13 @@ namespace Basket.Console
                 Price = 1.15m,
                 Quantity = 8
             });
+        }
 
-            if (basket.HasDiscount)
-            {
-                basket.ApplyDiscount();
-            }
-
-
-            var products = basket.GetCartContent().ToList();
-
+        private static void ShowBasketDetails(IBasket basket)
+        {
             System.Console.WriteLine("Product\t\tQuantity\tPrice\t\tDiscount");
 
+            var products = basket.GetCartContent().ToList();
             foreach (var item in products)
             {
                 System.Console.WriteLine(item.ToString());
@@ -64,17 +82,6 @@ namespace Basket.Console
 
             System.Console.WriteLine($"Total price: ${basket.TotalPrice}");
             System.Console.WriteLine($"Total price with discount: ${basket.TotalPriceWithDiscount}");
-        }
-
-        private static void RunApplication()
-        {
-            System.Console.WriteLine("Application started");
-
-            var db = new InitDatabase();
-            System.Console.WriteLine("Database initialization...");
-            db.Init();
-
-            System.Console.Clear();
         }
     }
 }
