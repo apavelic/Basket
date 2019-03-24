@@ -29,6 +29,10 @@ namespace Basket.Core.Models.Discounts
                 if (bread != null)
                 {
                     int numberOfBreadsToDiscount = butter.Quantity / 2;
+
+                    if (bread.Quantity < numberOfBreadsToDiscount)
+                        numberOfBreadsToDiscount = bread.Quantity;
+
                     bread.Discount = numberOfBreadsToDiscount * bread.Price / 2;
                 }
             }
