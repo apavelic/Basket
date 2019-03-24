@@ -6,6 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// This service is there only becasue of adding a new products in basket which requires a data from database. This Core layer should be a standalone component
+// and this product service have to be implemented in other (new) layer. But for simplify, I put that service here. Second options was to implement that within Console
+// layer, but in that case SOLID principles wouldn't be fulfilled
+
 namespace Basket.Core.Services
 {
     public class ProductService : IProductService
