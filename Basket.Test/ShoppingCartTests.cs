@@ -45,7 +45,7 @@ namespace Basket.Test
                 basket.ApplyDiscount();
 
             decimal expected = 2.95m;
-            Assert.AreEqual(expected, basket.TotalPriceWithDiscount);
+            Assert.AreEqual(expected, basket.GetTotalPrice());
         }
 
 
@@ -79,7 +79,7 @@ namespace Basket.Test
                 basket.ApplyDiscount();
 
             decimal expected = 3.10m;
-            Assert.AreEqual(expected, basket.TotalPriceWithDiscount);
+            Assert.AreEqual(expected, basket.GetTotalPrice());
         }
 
 
@@ -103,7 +103,7 @@ namespace Basket.Test
                 basket.ApplyDiscount();
 
             decimal expected = 3.45m;
-            Assert.AreEqual(expected, basket.TotalPriceWithDiscount);
+            Assert.AreEqual(expected, basket.GetTotalPrice());
         }
 
         [TestMethod]
@@ -143,7 +143,7 @@ namespace Basket.Test
                 basket.ApplyDiscount();
 
             decimal expected = 9.00m;
-            Assert.AreEqual(expected, basket.TotalPriceWithDiscount);
+            Assert.AreEqual(expected, basket.GetTotalPrice());
         }
     }
 }
