@@ -1,4 +1,5 @@
-﻿using Basket.Core.Interfaces;
+﻿using Basket.Core.Infrastructure;
+using Basket.Core.Interfaces;
 using Basket.Core.Models;
 using Basket.Data.Repositories;
 using System;
@@ -37,6 +38,7 @@ namespace Basket.Core.Services
             }
             catch (Exception e)
             {
+                Logger.Log($"ERROR\nClass: ProductService.cs, Method: GetProducts, Message: {e.Message}", LogType.Error);
                 throw e;
             }
         }

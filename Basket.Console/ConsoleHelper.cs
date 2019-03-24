@@ -29,7 +29,6 @@ namespace Basket.Console
             if (_hasDatabaseConnection == false)
                 InitializeCart();
         }
-
         public void ShowMainView()
         {
 
@@ -132,7 +131,7 @@ namespace Basket.Console
 
                     while (choice == -1)
                     {
-                        System.Console.Write("Enter the product number to add product to cart: ");
+                        System.Console.Write("Enter a product number to add products to cart: ");
 
                         int.TryParse(System.Console.ReadLine(), out choice);
 
@@ -204,7 +203,7 @@ namespace Basket.Console
         {
             try
             {
-                System.Console.WriteLine("Application started");
+                System.Console.WriteLine("App started");
 
                 var db = new InitDatabase();
                 System.Console.WriteLine("Database initialization...");
@@ -217,7 +216,7 @@ namespace Basket.Console
             catch (Exception)
             {
                 System.Console.Clear();
-                Logger.Log("Please check you connection string to initialize database. Application will start without using Data Access Layer and available products will not show if you try to add new product", LogType.Warning);
+                Logger.Log("Can not connect to a database.\nPlease check your connection string. The app will start without using data layer and adding new products will be disabled.", LogType.Warning);
                 return false;
             }
         }

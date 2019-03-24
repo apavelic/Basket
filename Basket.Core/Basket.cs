@@ -11,16 +11,15 @@ namespace Basket.Core
 {
     public class Basket : IBasket
     {
-        private List<ProductDTO> shoppingCart;
         public event TotalPriceDelegate OnTotalPriceRequested;
-
         public bool HasDiscount { get; set; }
+
+        private List<ProductDTO> shoppingCart;
 
         public Basket()
         {
             shoppingCart = new List<ProductDTO>();
         }
-
         public bool Add(ProductDTO productToAdd)
         {
             try
@@ -68,7 +67,6 @@ namespace Basket.Core
         {
             return shoppingCart;
         }
-
         public void ApplyDiscount()
         {
             try
@@ -85,6 +83,19 @@ namespace Basket.Core
             {
                 Logger.Log($"ERROR\nClass: Basket.cs, Method: ApplyDiscount, Message: {e.Message}", LogType.Error);
                 throw e;
+            }
+        }
+        public bool EmptyCart()
+        {
+            try
+            {
+                shoppingCart.Clear();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Log($"ERROR\nClass: Basket.cs, Method: EmptyCart, Message: {e.Message}", LogType.Error);
+                return false;
             }
         }
 
@@ -120,18 +131,6 @@ namespace Basket.Core
             {
                 Logger.Log($"ERROR\nClass: Basket.cs, Method: GetPossibleDiscounts, Message: {e.Message}", LogType.Error);
                 throw e;
-            }
-        }
-        public bool EmptyCart()
-        {
-            try
-            {
-                shoppingCart.Clear();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
             }
         }
     }
