@@ -146,7 +146,12 @@ namespace Basket.Console
                                 {
                                     System.Console.Write("Quantity: ");
                                     productToAdd.Quantity = int.Parse(System.Console.ReadLine());
+
+                                    if (productToAdd.Quantity == 0)
+                                        throw new Exception();
+
                                     quantityEntered = true;
+
                                 }
                                 catch (Exception)
                                 {
