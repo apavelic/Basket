@@ -1,13 +1,9 @@
-﻿using Basket.Core.Infrastructure;
-using Basket.Core.Interfaces;
+﻿using Basket.Core.Interfaces;
 using Basket.Core.Models;
 using Basket.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Basket.Core.Services
 {

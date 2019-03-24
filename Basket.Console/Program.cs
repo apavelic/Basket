@@ -1,15 +1,4 @@
-﻿using Basket.Core.Infrastructure;
-using Basket.Core.Interfaces;
-using Basket.Core.Models;
-using Basket.Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace Basket.Console
+﻿namespace Basket.Console
 {
     class Program
     {

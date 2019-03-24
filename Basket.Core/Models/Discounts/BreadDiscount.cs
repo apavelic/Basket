@@ -1,11 +1,6 @@
-﻿using System;
+﻿using Basket.Core.Infrastructure;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Basket.Core.Infrastructure;
-using Basket.Core.Interfaces;
-using Basket.Core.Services;
 
 namespace Basket.Core.Models.Discounts
 {
