@@ -125,5 +125,17 @@ namespace Basket.Core
                 throw e;
             }
         }
+        public bool EmptyCart()
+        {
+            try
+            {
+                shoppingCart.Clear();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

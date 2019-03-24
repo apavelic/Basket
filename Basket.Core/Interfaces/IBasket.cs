@@ -15,6 +15,7 @@ namespace Basket.Core.Interfaces
         void ApplyDiscount();
         bool HasDiscount { get; set; }
         decimal GetTotalPrice();
+        bool EmptyCart();
 
         event TotalPriceDelegate OnTotalPriceRequested;
 
