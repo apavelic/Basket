@@ -16,7 +16,7 @@ namespace Basket.Data.Configurations
             ToTable("Products");
 
             HasKey(p => p.ProductId);
-            Property(p => p.ProductId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(p => p.ProductId).IsRequired();
         }
     }
 }
