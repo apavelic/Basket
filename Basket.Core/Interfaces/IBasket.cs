@@ -11,14 +11,12 @@ namespace Basket.Core.Interfaces
     public interface IBasket
     {
         IEnumerable<ProductDTO> GetCartContent();
-        void Add(ProductDTO product);
+        bool Add(ProductDTO product);
         void ApplyDiscount();
         bool HasDiscount { get; set; }
-        decimal TotalPriceWithDiscount { get; }
-        decimal TotalPrice { get; }
+        decimal GetTotalPrice();
 
         event TotalPriceDelegate OnTotalPriceRequested;
-        event TotalPriceDelegate OnTotalPriceWithDiscountRequested;
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Basket.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace Basket.Core.Events
 {
     public class PriceEventArgs : EventArgs
     {
-        public object Price { get; set; }
+        public List<ProductDTO> ShoppingCart { get; set; }
+        public decimal Price { get; set; }
         public DateTime Date { get; set; }
     }
 }

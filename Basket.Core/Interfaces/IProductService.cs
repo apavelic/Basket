@@ -10,6 +10,6 @@ namespace Basket.Core.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<ProductDTO> GetProducts();
+        List<ProductDTO> GetProducts();
     }
 }

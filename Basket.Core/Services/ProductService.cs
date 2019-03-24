@@ -1,4 +1,5 @@
-﻿using Basket.Core.Interfaces;
+﻿using Basket.Core.Infrastructure;
+using Basket.Core.Interfaces;
 using Basket.Core.Models;
 using Basket.Data.Repositories;
 using System;
@@ -18,17 +19,29 @@ namespace Basket.Core.Services
             _productRepository = new ProductRepository();
         }
 
-        public IEnumerable<ProductDTO> GetProducts()
+        public List<ProductDTO> GetProducts()
         {
-            var products = _productRepository.GetAll().AsEnumerable();
-
-            foreach (var product in products)
+            try
             {
-                yield return new ProductDTO
+                List<ProductDTO> model = new List<ProductDTO>();
+
+                var products = _productRepository.GetAll().AsEnumerable();
+
+                foreach (var product in products)
                 {
-                    Name = product.Name,
-                    Price = product.Price
-                };
+                    model.Add(new ProductDTO
+                    {
+                        ProductId = product.ProductId,
+                        Name = product.Name,
+                        Price = product.Price
+                    });
+                }
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
     }
