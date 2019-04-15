@@ -51,6 +51,7 @@
     <Compile Include="Infrastructure\InitDatabase.cs" />
     <Compile Include="Infrastructure\ProductEnum.cs" />
     <Compile Include="Interfaces\IDiscount.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Models\Discounts\BreadDiscount.cs" />
     <Compile Include="Models\Discounts\MilkDiscount.cs" />

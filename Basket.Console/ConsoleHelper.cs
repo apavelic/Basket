@@ -12,10 +12,12 @@ namespace Basket.Console
     {
         private readonly IBasket _basket;
         private readonly IProductService _productService;
+        private readonly ILogger _logger;
         private readonly bool _hasDatabaseConnection;
 
         public ConsoleHelper()
         {
+            // add dependecy injection
             _hasDatabaseConnection = RunApplication();
 
             _productService = new ProductService();
@@ -25,6 +27,7 @@ namespace Basket.Console
             };
 
             _basket.OnTotalPriceRequested += Basket_OnTotalPriceRequested;
+            _logger = new Logger();
 
             if (_hasDatabaseConnection == false)
                 InitializeCart();
@@ -58,7 +61,7 @@ namespace Basket.Console
                     case 4:
                         break;
                     default:
-                        Logger.Log("Unsupported option. Please try again.", LogType.Warning);
+                        _logger.Log("Unsupported option. Please try again.", LogType.Warning);
                         choice = -1;
                         break;
                 }
@@ -69,7 +72,7 @@ namespace Basket.Console
             System.Console.Clear();
 
             if (_basket.EmptyCart())
-                Logger.Log("Chart is empty", LogType.Success);
+                _logger.Log("Chart is empty", LogType.Success);
 
             System.Console.WriteLine();
             ShowMainView();
@@ -106,7 +109,7 @@ namespace Basket.Console
 
             if (_hasDatabaseConnection == false)
             {
-                Logger.Log("Access denied. The database was not initialized.", LogType.Warning);
+                _logger.Log("Access denied. The database was not initialized.", LogType.Warning);
                 ShowMainView();
                 return;
             }
@@ -155,32 +158,32 @@ namespace Basket.Console
                                 }
                                 catch (Exception)
                                 {
-                                    Logger.Log("The Quantity must be a natural number. Please try again.", LogType.Warning);
+                                    _logger.Log("The Quantity must be a natural number. Please try again.", LogType.Warning);
                                 }
                             }
 
                             if (_basket.Add(productToAdd))
                             {
                                 System.Console.Clear();
-                                Logger.Log("Product added successfully.\n", LogType.Success);
+                                _logger.Log("Product added successfully.\n", LogType.Success);
                                 ShowMainView();
                             }
                         }
                         catch (Exception)
                         {
-                            Logger.Log("No product with this product number. Please try again.", LogType.Warning);
+                            _logger.Log("No product with this product number. Please try again.", LogType.Warning);
                             choice = -1;
                         }
                     }
                 }
                 else
                 {
-                    Logger.Log("No data in database.", LogType.Warning);
+                    _logger.Log("No data in database.", LogType.Warning);
                 }
             }
             catch (Exception e)
             {
-                Logger.Log(e.Message, LogType.Warning);
+                _logger.Log(e.Message, LogType.Warning);
             }
 
         }
@@ -221,7 +224,7 @@ namespace Basket.Console
             catch (Exception)
             {
                 System.Console.Clear();
-                Logger.Log("Can not connect to a database.\nPlease check your connection string. The app will start without using data layer and adding new products will be disabled.", LogType.Warning);
+                _logger.Log("Can not connect to a database.\nPlease check your connection string. The app will start without using data layer and adding new products will be disabled.", LogType.Warning);
                 return false;
             }
         }
@@ -230,7 +233,7 @@ namespace Basket.Console
             System.Console.Clear();
             IBasket basket = (IBasket)sender;
 
-            Logger.Log($"LOG [{args.Date}]: Total price requested: ${args.Price} (discount included)", LogType.Information);
+            _logger.Log($"LOG [{args.Date}]: Total price requested: ${args.Price} (discount included)", LogType.Information);
             var cart = basket.GetCartContent();
 
             ShowBasketDetails(cart);

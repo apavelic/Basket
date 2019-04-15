@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Basket.Core.Interfaces;
+using System;
 
 namespace Basket.Core.Infrastructure
 {
-    public class Logger
+    public class Logger : ILogger
     {
-        public static void Log(string message, LogType type)
+        public void Log(string message, LogType type)
         {
             var color = GetForegroundColor(type);
             Console.ForegroundColor = color;
@@ -12,7 +13,7 @@ namespace Basket.Core.Infrastructure
             Console.ResetColor();
         }
 
-        private static ConsoleColor GetForegroundColor(LogType type)
+        private ConsoleColor GetForegroundColor(LogType type)
         {
             switch (type)
             {

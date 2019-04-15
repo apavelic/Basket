@@ -13,11 +13,15 @@ namespace Basket.Core
     {
         public event TotalPriceDelegate OnTotalPriceRequested;
         public bool HasDiscount { get; set; }
+        private readonly ILogger _logger;
 
         private List<ProductDTO> shoppingCart;
 
         public Basket()
         {
+            // TODO add dependecy injection
+            // TODO remove this kind of logging and implement some external module fot that (with dependecy injection)
+            _logger = new Logger();
             shoppingCart = new List<ProductDTO>();
         }
         public bool Add(ProductDTO productToAdd)
@@ -38,7 +42,7 @@ namespace Basket.Core
             }
             catch (Exception e)
             {
-                Logger.Log($"ERROR\nClass: Basket.cs, Method: Add, Message: {e.Message}", LogType.Error);
+                _logger.Log($"ERROR\nClass: Basket.cs, Method: Add, Message: {e.Message}", LogType.Error);
                 return false;
             }
         }
@@ -59,7 +63,7 @@ namespace Basket.Core
             }
             catch (Exception e)
             {
-                Logger.Log($"ERROR\nClass: Basket.cs, Method: GetTotalPrice, Message: {e.Message}", LogType.Error);
+                _logger.Log($"ERROR\nClass: Basket.cs, Method: GetTotalPrice, Message: {e.Message}", LogType.Error);
                 throw e;
             }
         }
@@ -81,7 +85,7 @@ namespace Basket.Core
             }
             catch (Exception e)
             {
-                Logger.Log($"ERROR\nClass: Basket.cs, Method: ApplyDiscount, Message: {e.Message}", LogType.Error);
+                _logger.Log($"ERROR\nClass: Basket.cs, Method: ApplyDiscount, Message: {e.Message}", LogType.Error);
                 throw e;
             }
         }
@@ -94,11 +98,12 @@ namespace Basket.Core
             }
             catch (Exception e)
             {
-                Logger.Log($"ERROR\nClass: Basket.cs, Method: EmptyCart, Message: {e.Message}", LogType.Error);
+                _logger.Log($"ERROR\nClass: Basket.cs, Method: EmptyCart, Message: {e.Message}", LogType.Error);
                 return false;
             }
         }
 
+        // TODO add smarter way to handle discounts
         private List<DiscountType> GetPossibleDiscounts()
         {
             try
@@ -129,7 +134,7 @@ namespace Basket.Core
             }
             catch (Exception e)
             {
-                Logger.Log($"ERROR\nClass: Basket.cs, Method: GetPossibleDiscounts, Message: {e.Message}", LogType.Error);
+                _logger.Log($"ERROR\nClass: Basket.cs, Method: GetPossibleDiscounts, Message: {e.Message}", LogType.Error);
                 throw e;
             }
         }
