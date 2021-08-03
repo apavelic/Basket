@@ -1,7 +1,7 @@
 ﻿namespace Basket.Core.Interfaces
 {
-    public interface IDiscount
-    {
-        void ApplyDiscount();
-    }
+	public interface IDiscount
+	{
+		void ApplyDiscount();
+	}
 }

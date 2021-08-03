@@ -41,18 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\PriceEventArgs.cs" />
-    <Compile Include="Events\TotalPriceDelegate.cs" />
     <Compile Include="Factories\DiscountFactory.cs" />
     <Compile Include="Infrastructure\DiscountType.cs" />
     <Compile Include="Infrastructure\Logger.cs" />
     <Compile Include="Infrastructure\LogType.cs" />
     <Compile Include="Interfaces\IBasket.cs" />
-    <Compile Include="Infrastructure\InitDatabase.cs" />
     <Compile Include="Infrastructure\ProductEnum.cs" />
     <Compile Include="Interfaces\IDiscount.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Models\Discounts\BreadDiscount.cs" />
     <Compile Include="Models\Discounts\MilkDiscount.cs" />
     <Compile Include="Models\Discounts\NoDiscount.cs" />
@@ -60,13 +56,6 @@
     <Compile Include="Models\ProductDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Basket.cs" />
-    <Compile Include="Services\ProductService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Basket.Data\Basket.Data.csproj">
-      <Project>{B49C3ED4-3004-43E0-88A5-15ADC59DD209}</Project>
-      <Name>Basket.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

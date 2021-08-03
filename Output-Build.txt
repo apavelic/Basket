@@ -1,6 +1,0 @@
-﻿1>------ Build started: Project: Basket.Data, Configuration: Debug Any CPU ------
-1>  Basket.Data -> C:\Google Drive\Development\Assignment\Basket\Basket.Data\bin\Debug\Basket.Data.dll
-2>------ Build started: Project: Basket.Console, Configuration: Debug Any CPU ------
-2>C:\Google Drive\Development\Assignment\Basket\Basket.Console\Program.cs(15,33,15,37): warning CS0649: Field 'Program.cart' is never assigned to, and will always have its default value null
-2>  Basket.Console -> C:\Google Drive\Development\Assignment\Basket\Basket.Console\bin\Debug\Basket.Console.exe
-========== Build: 2 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========

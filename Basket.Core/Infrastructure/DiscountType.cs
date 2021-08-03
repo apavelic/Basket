@@ -1,9 +1,9 @@
 ﻿namespace Basket.Core.Infrastructure
 {
-    public enum DiscountType
-    {
-        MilkDiscount,
-        NoDiscount,
-        BreadDiscount
-    }
+	public enum DiscountType
+	{
+		MilkDiscount,
+		NoDiscount,
+		BreadDiscount
+	}
 }

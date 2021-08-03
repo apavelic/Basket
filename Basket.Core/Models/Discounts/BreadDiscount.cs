@@ -4,33 +4,30 @@ using System.Linq;
 
 namespace Basket.Core.Models.Discounts
 {
-    public class BreadDiscount : ProductDiscount
-    {
+	public class BreadDiscount : ProductDiscount
+	{
+		public override DiscountType Type => DiscountType.BreadDiscount;
 
-        public BreadDiscount(List<ProductDTO> products) :
-            base(products)
-        {
+		public BreadDiscount(List<ProductDTO> products) :
+						base(products)
+		{
 
-        }
+		}
 
-        public override void ApplyDiscount()
-        {
-            var butter = Products.FirstOrDefault(x => x.Name == ProductEnum.Butter.ToString());
+		public override void ApplyDiscount()
+		{
+			var butter = Products.FirstOrDefault(x => x.Name == ProductEnum.Butter.ToString());
+			var bread = Products.FirstOrDefault(x => x.Name == ProductEnum.Bread.ToString());
 
-            if (butter != null)
-            {
-                var bread = Products.FirstOrDefault(x => x.Name == ProductEnum.Bread.ToString());
+			if (bread != null)
+			{
+				var numberOfBreadsToDiscount = butter?.Quantity / 2;
 
-                if (bread != null)
-                {
-                    int numberOfBreadsToDiscount = butter.Quantity / 2;
+				if (bread.Quantity < numberOfBreadsToDiscount)
+					numberOfBreadsToDiscount = bread.Quantity;
 
-                    if (bread.Quantity < numberOfBreadsToDiscount)
-                        numberOfBreadsToDiscount = bread.Quantity;
-
-                    bread.Discount = numberOfBreadsToDiscount * bread.Price / 2;
-                }
-            }
-        }
-    }
+				bread.Discount = numberOfBreadsToDiscount.Value * bread.Price / 2;
+			}
+		}
+	}
 }

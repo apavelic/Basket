@@ -1,27 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Basket.Core.Infrastructure;
 
 namespace Basket.Core.Models.Discounts
 {
-    public class MilkDiscount : ProductDiscount
-    {
-        int? threshold;
+	public class MilkDiscount : ProductDiscount
+	{
+		public override DiscountType Type => DiscountType.MilkDiscount;
+		private const int _discountQuantity = 4; // buy 3 milks and get the 4th for free 
 
-        public MilkDiscount(List<ProductDTO> products, int? threshold = 4) : 
-            base(products)
-        {
-            this.threshold = threshold == 0 ? null : threshold;
-        }
+		public MilkDiscount(List<ProductDTO> products) :
+				base(products)
+		{
 
-        public override void ApplyDiscount()
-        {
-            var filteredProduct = Products.FirstOrDefault(x => x.Name == Infrastructure.ProductEnum.Milk.ToString());
+		}
 
-            if (threshold != null)
-            {
-                int numberOfFreeProducts = filteredProduct.Quantity / threshold.Value;
-                filteredProduct.Discount = filteredProduct.Price * numberOfFreeProducts;
-            }
-        }
-    }
+		public override void ApplyDiscount()
+		{
+			var filteredProduct = Products.FirstOrDefault(x => x.Name == ProductEnum.Milk.ToString());
+			var discountTarget = filteredProduct?.Quantity / _discountQuantity;
+
+			if (discountTarget > 0)
+				filteredProduct.Discount = filteredProduct.Price * discountTarget.Value;
+		}
+	}
 }
