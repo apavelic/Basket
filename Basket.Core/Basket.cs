@@ -12,11 +12,10 @@ namespace Basket.Core
 	{
 		public bool HasDiscount { get; set; }
 
-		private readonly ILogger _logger;
 		private List<ProductDTO> _shoppingCart;
+		private readonly ILogger _logger;
 		private List<DiscountType> _discountTypes
 			=> Enum.GetValues(typeof(DiscountType)).Cast<DiscountType>().ToList();
-
 		public Basket()
 		{
 			// TODO add dependecy injection
@@ -41,7 +40,7 @@ namespace Basket.Core
 			}
 			catch (Exception e)
 			{
-				_logger.Log($"ERROR\nClass: Basket.cs, Method: Add, Message: {e.Message}", LogType.Error);
+				_logger.Log($"Class: Basket.cs, Method: Add, Message: {e.Message}", LogType.Error);
 				return false;
 			}
 		}
@@ -53,12 +52,10 @@ namespace Basket.Core
 			}
 			catch (Exception e)
 			{
-				_logger.Log($"ERROR\nClass: Basket.cs, Method: GetTotalPrice, Message: {e.Message}", LogType.Error);
+				_logger.Log($"Class: Basket.cs, Method: GetTotalPrice, Message: {e.Message}", LogType.Error);
 				throw e;
 			}
 		}
-		public IEnumerable<ProductDTO> GetCartContent()
-			=> _shoppingCart;
 
 		public void ApplyDiscount()
 		{
@@ -70,7 +67,7 @@ namespace Basket.Core
 			}
 			catch (Exception e)
 			{
-				_logger.Log($"ERROR\nClass: Basket.cs, Method: ApplyDiscount, Message: {e.Message}", LogType.Error);
+				_logger.Log($"Class: Basket.cs, Method: ApplyDiscount, Message: {e.Message}", LogType.Error);
 				throw e;
 			}
 		}
@@ -83,7 +80,7 @@ namespace Basket.Core
 			}
 			catch (Exception e)
 			{
-				_logger.Log($"ERROR\nClass: Basket.cs, Method: EmptyCart, Message: {e.Message}", LogType.Error);
+				_logger.Log($"Class: Basket.cs, Method: EmptyCart, Message: {e.Message}", LogType.Error);
 				return false;
 			}
 		}

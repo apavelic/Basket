@@ -7,10 +7,10 @@ using System;
 namespace Basket.Test
 {
 	[TestClass]
-	public class DiscountTests
+	public class ShoppingBasketScenarios
 	{
 		[TestMethod]
-		public void GetTotalPriceOneOfEachTest()
+		public void Scenario_DiscountOneOfEachTest()
 		{
 			// arrange, act
 			IBasket basket = new Core.Basket
@@ -52,7 +52,7 @@ namespace Basket.Test
 
 
 		[TestMethod]
-		public void GetTotalPriceTwoButtersTwoBreadsTest()
+		public void Scenario_DiscountTwoButtersTwoBreadsTest()
 		{
 			// arrange, act
 			IBasket basket = new Core.Basket
@@ -85,7 +85,7 @@ namespace Basket.Test
 
 
 		[TestMethod]
-		public void GetTotalPriceFourMilksTest()
+		public void Scenario_DiscountFourMilksTest()
 		{
 			// arrange, act
 			IBasket basket = new Core.Basket
@@ -109,7 +109,7 @@ namespace Basket.Test
 		}
 
 		[TestMethod]
-		public void GetTotalPriceEightMilksOneBreadTwoButtersTest()
+		public void Scenario_DiscountEightMilksOneBreadTwoButtersTest()
 		{
 			// arrange, act
 			IBasket basket = new Core.Basket
@@ -149,7 +149,7 @@ namespace Basket.Test
 		}
 
 		[TestMethod]
-		public void GetTotalPriceEightMilks()
+		public void Scenario_DiscountEightMilks()
 		{
 			// arrange, act
 			IBasket basket = new Core.Basket

@@ -6,8 +6,6 @@ namespace Basket.Core.Models.Discounts
 {
 	public class BreadDiscount : ProductDiscount
 	{
-		public override DiscountType Type => DiscountType.BreadDiscount;
-
 		public BreadDiscount(List<ProductDTO> products) :
 						base(products)
 		{

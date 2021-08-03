@@ -6,7 +6,6 @@ namespace Basket.Core.Models.Discounts
 {
 	public class MilkDiscount : ProductDiscount
 	{
-		public override DiscountType Type => DiscountType.MilkDiscount;
 		private const int _discountQuantity = 4; // buy 3 milks and get the 4th for free 
 
 		public MilkDiscount(List<ProductDTO> products) :

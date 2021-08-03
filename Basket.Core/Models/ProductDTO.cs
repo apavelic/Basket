@@ -7,7 +7,7 @@ namespace Basket.Core.Models
 		public Guid ProductId { get; set; }
 		public string Name { get; set; }
 		public decimal Price { get; set; }
-		public decimal TotalPrice { get { return Price * Quantity; } }
+		public decimal TotalPrice => Price * Quantity;
 		public int Quantity { get; set; }
 		public decimal Discount { get; set; }
 

@@ -5,10 +5,9 @@ namespace Basket.Core.Interfaces
 {
 	public interface IBasket
 	{
-		IEnumerable<ProductDTO> GetCartContent();
 		bool Add(ProductDTO product);
 		void ApplyDiscount();
-		bool HasDiscount { get; set; }
+		bool HasDiscount { get; }
 		decimal GetTotalPrice();
 		bool EmptyCart();
 	}

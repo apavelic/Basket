@@ -8,7 +8,6 @@ namespace Basket.Core.Models.Discounts
 	public abstract class ProductDiscount : IDiscount
 	{
 		public List<ProductDTO> Products { get; }
-		public abstract DiscountType Type { get; }
 
 		public ProductDiscount(List<ProductDTO> products)
 		{
